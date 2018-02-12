@@ -10,14 +10,19 @@ dependency "openssl"
 relative_path "nrpe-#{version}"
 
 build do
-env = {
-    "LDFLAGS" => " -pie -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
-    "CFLAGS" => " -fPIC -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
-    "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
-  }
+  env = with_standard_compiler_flags(with_embedded_path)
+  configure =  ["./configure",
+                "--with-nrpe-user=nagios" ,
+                " --with-nrpe-group=nagios",
+                "--with-nagios-user=nagios",
+                "--with-nagios-group=nagios",
+                "--prefix=#{install_dir}/embedded --with-ssl=#{install_dir}/embedded "
+  ]
 
-  command "./configure --prefix=#{install_dir}/embedded --with-ssl=#{install_dir}/embedded ", :env => env
-  command "make" , :env => env
-  command "make install",  :env => env
+  command configure.join(" "), env: env
+  make "-j #{workers} all ", env: env
+  #make "install",  :env => env
+  command "sudo make install",  :env => env
 
 end
+

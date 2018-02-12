@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#
+
+echo "Instalando nrpe... Tareas previas"
+getent group nagios >/dev/null || groupadd -r nagios
+getent passwd nagios >/dev/null || useradd -r -g nagios -s /sbin/nologin  nagios
+
