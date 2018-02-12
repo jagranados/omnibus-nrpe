@@ -10,7 +10,14 @@ dependency "openssl"
 relative_path "nrpe-#{version}"
 
 build do
-  command "./configure"
-  command "make"
-  command "make install"
+env = {
+    "LDFLAGS" => " -pie -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+    "CFLAGS" => " -fPIC -L#{install_dir}/embedded/lib -I#{install_dir}/embedded/include",
+    "LD_RUN_PATH" => "#{install_dir}/embedded/lib"
+  }
+
+  command "./configure --prefix=#{install_dir}/embedded --with-ssl=#{install_dir}/embedded ", :env => env
+  command "make" , :env => env
+  command "make install",  :env => env
+
 end
