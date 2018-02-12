@@ -1,0 +1,37 @@
+DEPENDENCIES
+  apt (~> 2.0)
+  omnibus
+    git: https://github.com/opscode-cookbooks/omnibus.git
+    revision: 8ba6fbeb91da4bdac32eb01828bf6c33f88b4f6f
+
+GRAPH
+  apt (2.9.2)
+  build-essential (8.0.4)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  chef-ingredient (2.2.1)
+  chef-sugar (4.0.0)
+  git (8.0.0)
+    build-essential (>= 0.0.0)
+    homebrew (>= 0.0.0)
+  homebrew (4.3.0)
+  mingw (2.0.1)
+    seven_zip (>= 0.0.0)
+  ohai (5.2.1)
+  omnibus (5.3.3)
+    build-essential (>= 6.0.0)
+    chef-ingredient (>= 0.21.4)
+    chef-sugar (>= 3.2.0)
+    git (>= 0.0.0)
+    homebrew (>= 0.0.0)
+    remote_install (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+    windows (>= 0.0.0)
+    wix (>= 0.0.0)
+  remote_install (2.0.0)
+  seven_zip (2.0.2)
+    windows (>= 1.2.2)
+  windows (3.4.4)
+    ohai (>= 4.0.0)
+  wix (4.0.0)
+    windows (>= 2.0)
