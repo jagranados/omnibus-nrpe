@@ -13,7 +13,7 @@ project_name = "omnibus-nrpe"
 
 Vagrant.configure("2") do |config|
 
- config.vm.define 'centos-6' do |c|
+ config.vm.define 'centos-omnibus-6' do |c|
     c.berkshelf.berksfile_path = "./Berksfile"
     c.vm.box = "centos/6"
 
