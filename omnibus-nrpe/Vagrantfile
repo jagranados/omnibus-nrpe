@@ -54,6 +54,8 @@ Vagrant.configure("2") do |config|
     export PATH=/usr/local/bin:$PATH
     source /home/vagrant/load-omnibus-toolchain.sh
     cd #{guest_project_path}
+    echo "Ejecutando a mano preinst..."
+    sudo sh package-scripts/nrpe/preinst
     su vagrant -c "bundle install --binstubs"
     su vagrant -c "bin/omnibus build #{project_name}"
   OMNIBUS_BUILD
