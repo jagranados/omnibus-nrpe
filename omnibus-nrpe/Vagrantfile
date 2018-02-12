@@ -9,7 +9,7 @@ end
 
 host_project_path = File.expand_path("..", __FILE__)
 guest_project_path = "/home/vagrant/#{File.basename(host_project_path)}"
-project_name = "nginx"
+project_name = "omnibus-nrpe"
 
 Vagrant.configure("2") do |config|
 
@@ -17,8 +17,6 @@ Vagrant.configure("2") do |config|
     c.berkshelf.berksfile_path = "./Berksfile"
     c.vm.box = "centos/6"
 
-    #c.vm.box = "opscode-centos-6.3"
-    #c.vm.box_url = "http://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.3_chef-11.2.0.box"
   end
 
   # Ensure a recent version of the Chef Omnibus packages are installed
@@ -36,6 +34,7 @@ Vagrant.configure("2") do |config|
 
   #config.vm.provision :shell, :inline => "apt-get update"
   config.vm.provision :shell, :inline => "yum update -y"
+
   # prepare VM to be an Omnibus builder
   config.vm.provision :chef_solo do |chef|
     chef.json = {
