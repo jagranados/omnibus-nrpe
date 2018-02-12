@@ -17,4 +17,5 @@ Vagrant.configure("2") do |config|
     c.vm.box = "centos/6"
 
   end
+end
 
